@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff4f72">
+  <meta name="description" content="Heartberry Quest — Ruby Razzleberry / Razzle Ridge vertical slice prototype by Berry Belle Studios.">
+  <title>Heartberry Quest — Razzle Ridge Vertical Slice</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sky-glow" aria-hidden="true"></div>
+  <div class="floating-berries" aria-hidden="true">
+    <span>●</span><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span>
+  </div>
+
+  <header class="topbar">
+    <div class="brand-mini">
+      <span class="brand-heart">♥</span>
+      <span>BERRY BELLE STUDIOS</span>
+    </div>
+    <button id="soundToggle" class="icon-button" type="button" aria-label="Toggle sound">🔊</button>
+  </header>
+
+  <main class="game-shell">
+    <section id="introScreen" class="screen intro-screen active" aria-labelledby="introTitle">
+      <div class="intro-art" role="img" aria-label="Heartberry Quest title artwork"></div>
+      <div class="intro-card glass-card">
+        <p class="eyebrow">WORLD 01 • RAZZLE RIDGE</p>
+        <h1 id="introTitle">RUBY'S FIRST SPARK</h1>
+        <p class="intro-copy">A polished web vertical slice: match berries, charge Ruby, unleash <strong>Razzle Blast</strong>, complete the goal, and earn your first Razzle Ridge reward.</p>
+        <div class="feature-pills" aria-label="Vertical slice features">
+          <span>🎓 Tutorial</span><span>🍓 Match-3</span><span>❤️ Ruby Helper</span><span>💥 Razzle Blast</span><span>🎁 Victory Reward</span>
+        </div>
+        <button id="startButton" class="primary-button" type="button">ENTER RAZZLE RIDGE ✨</button>
+      </div>
+    </section>
+
+    <section id="playScreen" class="screen play-screen" aria-label="Razzle Ridge gameplay">
+      <div class="game-header">
+        <div class="level-badge"><small>LEVEL</small><strong>01</strong></div>
+        <div class="game-title-wrap">
+          <div class="wordmark">HEARTBERRY <span>QUEST</span></div>
+          <div class="world-ribbon">RAZZLE RIDGE • RUBY'S FIRST SPARK</div>
+        </div>
+        <button id="restartButton" class="icon-button" type="button" aria-label="Restart level">↻</button>
+      </div>
+
+      <div class="hud" aria-label="Level status">
+        <div class="hud-card"><small>MOVES</small><strong id="movesValue">18</strong></div>
+        <div class="hud-card goal-card">
+          <small>GOAL</small>
+          <div class="goal-line"><span class="mini-piece red"></span><strong><span id="redGoalValue">0</span>/12</strong></div>
+        </div>
+        <div class="hud-card"><small>SCORE</small><strong id="scoreValue">0</strong></div>
+      </div>
+
+      <div class="play-layout">
+        <aside class="ruby-panel glass-card">
+          <div class="ruby-portrait-wrap">
+            <img src="assets/ruby-razzleberry-3d.jpg" alt="Ruby Razzleberry 3D concept artwork">
+            <div class="ruby-badge">❤️</div>
+          </div>
+          <div class="ruby-copy">
+            <p class="eyebrow">YOUR HELPER</p>
+            <h2>RUBY RAZZLEBERRY</h2>
+            <p class="ruby-traits">BOLD • EXCITABLE • PASSIONATE</p>
+          </div>
+          <div class="charge-block">
+            <div class="charge-label"><span>RAZZLE CHARGE</span><strong id="chargeText">0/10</strong></div>
+            <div class="charge-track" aria-label="Ruby charge meter"><div id="chargeFill" class="charge-fill"></div></div>
+          </div>
+          <button id="razzleButton" class="power-button" type="button" disabled>
+            <span class="power-icon">💥</span>
+            <span><strong>RAZZLE BLAST</strong><small id="razzleHint">Fill the meter to activate</small></span>
+          </button>
+          <div class="ruby-quote" id="rubyQuote">“Let's light it up!”</div>
+        </aside>
+
+        <section class="board-stage" aria-label="Puzzle board area">
+          <div id="statusBanner" class="status-banner" aria-live="polite">Match 3 or more berries. Red matches charge Ruby faster! ❤️</div>
+          <div id="board" class="board" role="grid" aria-label="7 by 7 berry puzzle board"></div>
+          <div class="booster-tray" aria-label="Boosters">
+            <button class="booster" id="rainbowBooster" type="button" data-booster="rainbow">
+              <span class="booster-art rainbow-art"></span><strong>RAINBOW</strong><small>x1</small>
+            </button>
+            <button class="booster" id="mixBooster" type="button" data-booster="mix">
+              <span class="booster-art mix-art">↻</span><strong>MIX-UP</strong><small>x1</small>
+            </button>
+            <button class="booster" id="bonkBooster" type="button" data-booster="bonk">
+              <span class="booster-art bonk-art">🔨</span><strong>BONK</strong><small>x2</small>
+            </button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="tutorialModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="tutorialTitle">
+    <div class="modal-card tutorial-card">
+      <div id="tutorialIcon" class="tutorial-icon">🍓</div>
+      <p class="eyebrow">RAZZLE RIDGE TUTORIAL</p>
+      <h2 id="tutorialTitle">MAKE YOUR FIRST MATCH</h2>
+      <p id="tutorialText">Swap two neighboring berries to create a line of 3 or more. Valid matches use one move.</p>
+      <div class="tutorial-dots"><span class="active"></span><span></span><span></span></div>
+      <button id="tutorialNext" class="primary-button" type="button">NEXT ✨</button>
+    </div>
+  </div>
+
+  <div id="resultModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+    <div class="modal-card result-card">
+      <div id="resultStars" class="result-stars" aria-label="Star rating">☆ ☆ ☆</div>
+      <p class="eyebrow" id="resultEyebrow">RAZZLE RIDGE</p>
+      <h2 id="resultTitle">LEVEL COMPLETE!</h2>
+      <p id="resultCopy">Ruby recovered the first Heartberry spark.</p>
+      <div class="reward-chest">🎁</div>
+      <div class="reward-row"><span>🪙 <strong id="coinReward">250</strong></span><span>🚀 <strong>x1</strong></span></div>
+      <div class="result-actions">
+        <button id="playAgainButton" class="primary-button" type="button">PLAY AGAIN ❤️</button>
+        <button id="backToTitleButton" class="secondary-button" type="button">TITLE SCREEN</button>
+      </div>
+      <p class="story-tease">🌿 Somewhere beyond Razzle Ridge, a thorn-covered shadow begins to stir...</p>
+    </div>
+  </div>
+
+  <div id="burstLayer" class="burst-layer" aria-hidden="true"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>
